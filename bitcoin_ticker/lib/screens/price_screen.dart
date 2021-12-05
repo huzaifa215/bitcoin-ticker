@@ -1,4 +1,5 @@
 import 'package:bitcoin_ticker/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PriceScreen extends StatefulWidget {
@@ -49,27 +50,42 @@ class _PriceScreenState extends State<PriceScreen> {
                   topRight: Radius.circular(40), topLeft: Radius.circular(40)),
             ),
             alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 30.0),
-            child: DropdownButton<String>(
-              value: _selectedCurrency,
-              items: currenciesList
-                  .map((currency) => DropdownMenuItem(
-                        child: Text(
-                          currency,
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                        value: currency,
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedCurrency = value!;
-                });
+            padding: EdgeInsets.only(top:30,bottom: 20.0),
+            child: CupertinoPicker(
+             // backgroundColor: Colors.lightBlue,
+              itemExtent: 30.0,
+              onSelectedItemChanged: (value) {
                 print(value);
               },
+              children: currenciesList
+                  .map((currency) => Text(
+                        currency,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ))
+                  .toList(),
             ),
+            // child: DropdownButton<String>(
+            //   value: _selectedCurrency,
+            //   items: currenciesList
+            //       .map((currency) => DropdownMenuItem(
+            //             child: Text(
+            //               currency,
+            //               style: TextStyle(
+            //                 fontSize: 20,
+            //               ),
+            //             ),
+            //             value: currency,
+            //           ))
+            //       .toList(),
+            //   onChanged: (value) {
+            //     setState(() {
+            //       _selectedCurrency = value!;
+            //     });
+            //     print(value);
+            //   },
+            // ),
           ),
         ],
       ),
